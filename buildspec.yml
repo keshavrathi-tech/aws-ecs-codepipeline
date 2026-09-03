@@ -5,16 +5,16 @@ phases:
     commands:
       - echo "Logging in to Amazon ECR..."
       - aws sts get-caller-identity
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin "$ECR_URI"
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 242417635320.dkr.ecr.ap-south-1.amazonaws.com
 
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t "$ECR_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" .
+      - docker build -t 242417635320.dkr.ecr.ap-south-1.amazonaws.com/devops-lab5-app:$CODEBUILD_RESOLVED_SOURCE_VERSION .
       - echo "Pushing Docker image..."
-      - docker push "$ECR_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - docker push 242417635320.dkr.ecr.ap-south-1.amazonaws.com/devops-lab5-app:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo "Creating imagedefinitions.json..."
-      - printf '[{"name":"lab5-app","imageUri":"%s"}]' "$ECR_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
+      - printf '[{"name":"lab5-app","imageUri":"242417635320.dkr.ecr.ap-south-1.amazonaws.com/devops-lab5-app:%s"}]' "$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
 
 artifacts:
   files:
