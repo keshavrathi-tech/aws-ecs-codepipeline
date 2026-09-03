@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     'Content-Type': 'text/plain'
   });
 
-  res.end('Hello from ECS Fargate! Version: 1.0\n');
+  res.end('Hello from ECS Fargate! Version: 2.0\n');
 });
 
 server.listen(3000, () => {
